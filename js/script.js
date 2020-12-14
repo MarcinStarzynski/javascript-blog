@@ -47,23 +47,46 @@
         for(let link of links){
             link.addEventListener('click', titleClickHandler);
         }
-      const generateTitleLinks = function(){
-            const clickedElement = this;
+        const generateTitleLinks = function(){
             console.log('Title was clicked');
+
+
       /* remove links list */
 
             const linksList = document.querySelector('ul.list');
             console.log(linksList);
             linksList.innerHTML= "";
-            
+
       /* read article id and save it as const */
 
-      /* find element with title and save it as const */
+            const articles = document.querySelectorAll('.post');
 
-      /* write html code from both const */
+            let html = '';
 
-      /* input html code to column */      
+            for(let article of articles){
+                  const articleId = article.getAttribute('id');
+                  console.log(articleId);
+                  
+                  /* find element with title and save it as const */
+
+                  const articleTitle = article.querySelector('h3.post-title').innerHTML;
+                  console.log(articleTitle);
+
+                  /* write html code from both const */
+
+                  const linkHTML = '<li> <a href="# ' + articleId + ' "><span> ' + articleTitle + ' </span> </a> </li>';
+                  console.log(linkHTML);
+
+                  /* input html code to column */
+
+                  html = html + linkHTML;
+                  console.log(html);
+            }
+            
+           // titleList.innerHTML = html;
+            linksList.innerHTML = html;
       }
+
       generateTitleLinks()
       
 }
