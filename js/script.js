@@ -3,7 +3,7 @@
    //const links = document.querySelectorAll('.titles a');
     //console.log('links:', links);
   //});
-      const titleClickHandler = function(){
+      const titleClickHandler = function(event){
         event.preventDefault();
         const clickedElement = this;
         console.log('Link was clicked!');
@@ -22,7 +22,7 @@
 
       /* remove class 'active' from all articles */
 
-        const activeArticles = document.querySelectorAll('.posts article.active');
+        const activeArticles = document.querySelectorAll('.posts .active');
 
         for(let activeArticle of activeArticles){
             activeArticle.classList.remove('active');
@@ -42,18 +42,13 @@
         targetArticle.classList.add('active');
 
     }
-        const links = document.querySelectorAll('.titles a');
-  
-        for(let link of links){
-            link.addEventListener('click', titleClickHandler);
-        }
+        
         const generateTitleLinks = function(){
-            console.log('Title was clicked');
-
+            //event.preventDefault();
 
       /* remove links list */
 
-            const linksList = document.querySelector('ul.list');
+            const linksList = document.querySelector('.titles');
             console.log(linksList);
             linksList.innerHTML= "";
 
@@ -69,12 +64,12 @@
                   
                   /* find element with title and save it as const */
 
-                  const articleTitle = article.querySelector('h3.post-title').innerHTML;
+                  const articleTitle = article.querySelector('.post-title').innerHTML;
                   console.log(articleTitle);
 
                   /* write html code from both const */
 
-                  const linkHTML = '<li> <a href="# ' + articleId + ' "><span> ' + articleTitle + ' </span> </a> </li>';
+                  const linkHTML = '<li><a href="#' + articleId + ' "><span>' + articleTitle + '</span></a></li>';
                   console.log(linkHTML);
 
                   /* input html code to column */
@@ -85,8 +80,12 @@
             
            // titleList.innerHTML = html;
             linksList.innerHTML = html;
-      }
-
-      generateTitleLinks()
       
+            const links = document.querySelectorAll('.titles a');
+  
+        for(let link of links){
+            link.addEventListener('click', titleClickHandler);
+        }
+      }
+      generateTitleLinks()
 }
